@@ -1,5 +1,5 @@
-application: water-reminder
-version: 0-02
+application: jamstage
+version: 1-00
 runtime: python
 api_version: 1
 
@@ -30,16 +30,11 @@ handlers:
 - url: /images
   static_dir: images
   
-- url: /(.*\.(mp3|wav))
-  static_files: \1
-  upload: (.*\.(mp3|wav))  
-  
+
   
 # Request Handlers  
 
-- url: /twilio/.*
-  script: phone.py
-  
+
 - url: /
   script: index.py
 

@@ -1,0 +1,64 @@
+<div id="main" class="clearfix">
+				  
+
+<!-- Address Bar -->
+<h1>API Explorer</h1>
+
+<div class="explorer-nav" >
+<div id="apis">
+{% for api in apis %}
+<a id="{{ api.name }}" class="nav-api" style="float:left">
+<span>{{ api.name }}</span>
+</a>
+{% endfor %}
+</div>
+</div>
+
+
+
+<div class="address-bar-container clearfix">
+	
+	<div id="address_bar" class="address-bar clearfix">
+	
+	<div id="methods">
+{% for api in apis %}
+<div class="api-methods" id="{{ api.name }}" style="display:none;">
+{% for method in api.methods %}
+<a id="{{ method.name }}" class="nav-method" >
+<span>{{ method.name }}</span>
+</a>
+{% endfor %}
+</div>
+{% endfor %}
+</div>
+
+	
+		<div class="input">{{ api_base }}<span class="path" style="font-weight:bold;"></span><input type="text" id="path" value=""></div> 
+		<a href="#" class="submit" id="submit"><span>Make Request</span></a>  	     
+	</div>     
+
+	<form id="description">
+	{% for api in apis %}
+	{% for method in api.methods %}
+		<div id="{{ method.name }}" class="description" style="clear:both; display:none;"><p><strong>{{ method.name }}</strong>: {{ method.description }}</p></div>
+		{% endfor %}
+		{% endfor %}
+  	
+		<div id="parameters">            
+			<div id="parameters_container"><table><tbody><tr>
+  <td class="name">id</td>
+  <td class="value"><input type="text" value="" name="id"></td>
+  <td class="description"></td>
+</tr></tbody><tfoot><tr><td></td><td colspan="2"><a href="#" class="submit" id="update_url"><span>Update URL</span></a></td></tr></tfoot></table></div>
+		</div>
+	</form>
+	
+</div>
+
+  
+  <div id="api_response">
+
+  </div>
+  
+
+				</div>
