@@ -1,74 +1,74 @@
 
 API_LIST = 			    [
-			    {
-            'name': 'user',
-            'description': 'Retrieve a list of items available at a particular spot',
-            'methods': [
-              {
-               'name': 'user.get',
-               'description': 'Get User'
-              },
-             {
-               'name': 'user.find',
-               'description': 'Find User'
-              },
-              {
-               'name': 'user.bits',
-               'description': 'Get User Bits'
-              }
-            ]
-			    },
+
           {
             'name': 'code',
-            'description': 'Retrieve a list of items available at a particular spot',
+            'description': '',
             'methods': [
               {
                'name': 'code.get',
-               'description': 'Get code'
+               'description': 'Get media and information associated with a code',
+                'collection': 'media',
+                'query': 'codeid=1&codepw=[password]&[quiet=true]&skip=[skip]&limit=[limit]&mm=[generated hash]'
               },
              {
-               'name': 'code.find',
-               'description': 'Find code'
+               'name': 'code.update',
+               'description': 'Update properties of a code',
+                 'query': 'codeid=1400300831950&codepw=11e676cb692eb54d0e55b171198b30ed&authuname=billy&authpw=11e676cb692eb54d0e55b171198b30ed&password=testing&title=test%20stickybit%20sticker'
+             
               },
               {
-               'name': 'code.bits',
-               'description': 'code Bits'
+               'name': 'code.popular',
+               'description': 'Get a list of codes sorted by popularity',
+               'collection': 'codes',
+               'query': 'skip=[skip]&limit=[limit]&since=[since]&mm=[generated hash]',
+             }
+            ]
+			    },
+			    {
+            'name': 'user',
+            'description': '',
+            'methods': [
+              {
+               'name': 'user.info',
+               'description': 'Get information about a user',
+               'query': 'username=billy&mm=[generated hash]',
+              },
+                            {
+               'name': 'user.bits',
+               'description': 'Get the bits attached by a user',
+               'query': 'username=billy&skip=[skip]&limit=[limit]&mm=[generated hash]',
+               'collection': 'bits'
+              },
+             {
+               'name': 'user.find',
+               'description': 'Find friends for a  user',
+               'query': 'authuname=billy&authpw=11e676cb692eb54d0e55b171198b30ed&search=joe&mm=[generated hash]',
               }
             ]
 			    },
           {
             'name': 'social',
-            'description': 'Retrieve a list of items available at a particular spot',
+            'description': '',
             'methods': [
               {
-               'name': 'social.get',
-               'description': 'Get User'
-              },
-             {
-               'name': 'social.find',
-               'description': 'Find User'
-              },
-              {
-               'name': 'social.bits',
-               'description': 'Get User Bits'
+               'name': 'social.venues',
+               'description': 'Get nearby venues',
+               'query': 'lat=[lat]&long=[long]&q=[search]&l=[limit]&mm=[generated hash]',
               }
             ]
 			    },
           {
-            'name': 'friendlist',
-            'description': 'Retrieve a list of items available at a particular spot',
+            'name': 'notify',
+            'description': '',
             'methods': [
               {
-               'name': 'friendlist.get',
-               'description': 'Get User'
+               'name': 'notify.set',
+               'description': 'Add or remove a notifier'
               },
              {
-               'name': 'friendlist.find',
-               'description': 'Find User'
-              },
-              {
-               'name': 'friendlist.bits',
-               'description': 'Get User Bits'
+               'name': 'notify.get',
+               'description': 'Get notifications for a code'
               }
             ]
 			    }

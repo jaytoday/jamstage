@@ -24,7 +24,7 @@
 {% for api in apis %}
 <div class="api-methods" id="{{ api.name }}" style="display:none;">
 {% for method in api.methods %}
-<a id="{{ method.name }}" class="nav-method" >
+<a id="{{ method.name }}" query="{{ method.query }}"  class="nav-method" >
 <span>{{ method.name }}</span>
 </a>
 {% endfor %}
@@ -57,7 +57,50 @@
 
   
   <div id="api_response">
+  {% for api in apis %}
+	{% for method in api.methods %}
+	<div class="response_container" style="display:none;" class="show" id="{{ method.name }}">
+	
+	
+	<!-- Populated with a facsimile of the request headers. -->
+<pre id="request_pre" class="request" style="overflow-x: visible; overflow-y: visible; ">
+<code id="request">GET <span id="api_path">{{ method.path }}{{ method.query }}</span> HTTP/1.1
+Host: stickybits.com
+Accept: application/json
+Auth-Key: 558232
+</code></pre>
 
+<!-- Populated with the response headers/body. -->
+<pre id="response_pre" style="overflow-x: hidden; overflow-y: hidden; ">
+<code id="response_headers">
+HTTP/1.1 200 OK
+Date: Fri, 26 Mar 2010 01:33:39 GMT
+Vary: Accept-Encoding, Accept-Encoding
+Content-Type: application/json; charset=utf-8
+</code>
+<code class="json" id="response_body">{
+  <span class="property">"{{ method.collection|default:"results" }}"</span>: [
+    {
+      <span class="property">"property"</span>: <span class="string">"value"</span>,
+      <span class="property">"resource_url"</span>: <span class="string">"<a href="/resource/path">/resource/path</a>"</span>,
+      <span class="property">"looking like a fool"</span>: <span class="string">"with your pants on the ground"</span>,
+    },
+    {
+      <span class="property">"property"</span>: <span class="string">"value"</span>,
+      <span class="property">"resource_url"</span>: <span class="string">"<a href="/resource/path">/resource/path</a>"</span>,
+      <span class="property">"gold teeth in your mouth"</span>: <span class="string">"with your pants on the ground"</span>,
+    },
+
+  ]
+}</code></pre>
+	
+	
+	
+	
+	
+	</div>
+  {% endfor %}
+  {% endfor %}
   </div>
   
 
