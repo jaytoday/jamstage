@@ -30,7 +30,7 @@ class Index(webapp.RequestHandler):
 
 # wire up the views
 application = webapp.WSGIApplication([
-    ('/', Index)
+    ('/324101383720', Index)
 
 ], debug=True)
 

@@ -35,7 +35,7 @@ handlers:
 # Request Handlers  
 
 
-- url: /
+- url: /.*
   script: index.py
 
 
