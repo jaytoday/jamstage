@@ -64,11 +64,13 @@ API_LIST = 			    [
             'methods': [
               {
                'name': 'notify.set',
-               'description': 'Add or remove a notifier'
+               'description': 'Add or remove a notifier',
+               'query': 'authuname=billy&authpw=11e676cb692eb54d0e55b171198b30ed&codeid=1&add=scans,content&remove=latlong&mm=[generated hash]',
               },
              {
                'name': 'notify.get',
-               'description': 'Get notifications for a code'
+               'description': 'Get notifications for a code',
+               'query': 'authuname=billy&authpw=11e676cb692eb54d0e55b171198b30ed&codeid=1&mm=[generated hash]',
               }
             ]
 			    }
