@@ -9,6 +9,7 @@ font-size: 14px;
 margin-bottom: 15px;
 padding: 10px;
 text-shadow: none;
+margin-left: -23px;
 }
 
 
@@ -24,7 +25,7 @@ float: left;
 font-size: 14px;
 margin-bottom: 10px;
 padding: 8px;
-width: 518px;
+width: 548px;
 height: 16px;
 }
 
@@ -34,7 +35,7 @@ font-size: 14px;
 font-weight: bold;
 margin: 0px;
 padding: 0px;
-width: 355px;
+width: 300px;
 }
 
 #address_bar .submit{

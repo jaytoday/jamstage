@@ -1,5 +1,6 @@
 $(function(){
 
+$address_bar = $('#address_bar');
 $nav_apis = $('.nav-api');
 $method_groups = $('.api-methods');
 $methods = $('.nav-method');
@@ -8,7 +9,7 @@ $descriptions = $('.description');
 $methods.click(function(){
    $(this).siblings().removeClass('clicked');
   $(this).addClass('clicked'); 
-  
+  $address_bar.find('span.path').text($(this).attr('id'));
   $descriptions.filter('[id=' + $(this).attr('id') + ']')
     .siblings().hide().end()
     .show();
