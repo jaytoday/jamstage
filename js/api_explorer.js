@@ -11,7 +11,6 @@ $address_submit = $address_bar.find('a#submit');
 
 
 $address_submit.click(function(){
-
   $api_responses = $('#api_response').find('.response_container');
   $api_responses.filter('.show').hide(500);
   setTimeout(refreshResponse, 1000);
@@ -26,7 +25,7 @@ $methods.click(function(){
     .siblings().hide().end()
     .show();
 
-  $address_input.attr('value', '?' + $(this).attr('query'));
+  $address_input.attr('value', '/?' + $(this).attr('query'));
    $address_submit.click(); 
   
 });
