@@ -1,20 +1,18 @@
 $(function(){
 
 $address_bar = $('#address_bar');
-$address_input = $address_bar.find('.input:first').find('input');
+$input_container = $address_bar.find('.input:first');
+$address_input = $input_container.find('input');
 
 $nav_apis = $('.nav-api');
 $method_groups = $('.api-methods');
 $methods = $('.nav-method');
 $descriptions = $('.description');
 $address_submit = $address_bar.find('a#submit');
+$response_container = $('#api_response_container');
+$response_loading = $response_container.find('#response_loading');
 
-
-$address_submit.click(function(){
-  $api_responses = $('#api_response').find('.response_container');
-  $api_responses.filter('.show').hide(500);
-  setTimeout(refreshResponse, 1000);
-});
+$address_submit.click(refreshResponse);
 
 
 $methods.click(function(){
@@ -54,16 +52,24 @@ setTimeout(function(){ $nav_apis.filter(':first').click();  }, 50);
 
 
 function refreshResponse(){
-  
+  $response_container.find('.response_data').hide(500);
+  $response_loading.show();
+  $request_path = $input_container.find('.path').text() + $address_input.val() + '&ov=558232';
 
-  $this_method = $('.api-methods.show:first').find('.nav-method.clicked:first');
-  
-  
-  
-  $this_response = $('#api_response').find('.response_container').filter('[id=' + $this_method.attr('id') + ']');
 
-  
-  $this_response.addClass('show').show(500);
+$.ajax({
+  url: '/ajax',
+  data:
+  { 
+    'request_path': $request_path
+  },
+  success: function(data) {
+    $response_container.find('#inner').html(data)
+      .find('.response_data').addClass('show').show(500);
+    $response_loading.hide();
+  }
+});
+
 }
 
 

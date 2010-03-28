@@ -104,7 +104,7 @@ color:white;
 
 .request{
 border-bottom: 1px solid #CCC;
-margin: 0px 10px 0px;
+margin: 0px 0px 10px;
 padding: 0px 0px 15px;
 }
 
@@ -118,14 +118,14 @@ text-shadow: white 0px 0px 0px;
 form{ display: block;
 }
 
+code{
+color:  black;
+}
 
 code .property{
 color: #008;
 }
 
-code .string{
-color:  black;
-}
 
 code a, code a:hover{
 color: #606 !important;

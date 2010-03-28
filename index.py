@@ -1,7 +1,12 @@
 __author__ = "James Alexander Levy (jamesalexanderlevy@gmail.com)"
 
-import os
-
+import os, logging
+CURRENT_DJANGO_VERSION = '1.0'
+import google.appengine.dist
+try:
+  google.appengine.dist.use_library('django', CURRENT_DJANGO_VERSION)
+except google.appengine.dist._library.UnacceptableVersionError:
+  logging.error('UNABLE TO LOAD DJANGO %s' % CURRENT_DJANGO_VERSION)
 from google.appengine.ext import db
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
@@ -28,9 +33,45 @@ class Index(webapp.RequestHandler):
 			self.response.out.write(template.render(path, context))
 
 
+class AjaxHandler(webapp.RequestHandler):
+    def get(self):
+      from google.appengine.api import urlfetch
+      fetch_page = urlfetch.fetch(
+      'http://dev.stickybits.com/api/' + self.request.get('request_path'),
+      headers = {'User-Agent': "Mozilla/5.0"}, deadline=15)
+      from django.utils import simplejson
+      logging.info(fetch_page.headers)
+      logging.info(fetch_page.content)
+      status_code = str(fetch_page.status_code)
+      if status_code == '200':
+        status_code += ' OK'
+      else: status_code += ' Error'
+      status_code = 'HTTP/1.1 ' + status_code
+      content = simplejson.loads(fetch_page.content)
+      content = simplejson.dumps(content, indent=4)
+      import re
+      content = re.sub('"(.*)":', self.renderProperty, content)
+      # also replace resource URLs
+      context = {
+        'headers': fetch_page.headers.items(),
+        'status_code' : status_code,
+        'content': content
+          }
+      # calculate the template path
+      path = os.path.join(os.path.dirname(__file__), 'templates',
+          'api_response.html')
+      # render the template with the provided context
+      self.response.out.write(template.render(path, context))
+    
+    def renderProperty(self, matchobj):
+      return '<span class="property">' + matchobj.group(0)[:-1] + '</span>:'
+
+
+
 # wire up the views
 application = webapp.WSGIApplication([
-    ('/324101383720', Index)
+    ('/324101383720', Index),
+    ('/ajax', AjaxHandler)
 
 ], debug=True)
 

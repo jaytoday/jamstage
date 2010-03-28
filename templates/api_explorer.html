@@ -37,71 +37,27 @@
 		<a href="#" class="submit" id="submit"><span>Make Request</span></a>  	     
 	</div>     
 
-	<form id="description">
+	<form id="description" style="clear:both;">
+	<div style="display:none; float:left;">Method Name: </div>
+	<div id="descriptions">
 	{% for api in apis %}
 	{% for method in api.methods %}
-		<div id="{{ method.name }}" class="description" style="clear:both; display:none;"><p><strong>{{ method.name }}</strong>: {{ method.description }}</p></div>
+		<div id="{{ method.name }}" class="description" style="display:none;"><p><strong>{{ method.name }}</strong>: {{ method.description }}</p></div>
 		{% endfor %}
 		{% endfor %}
+  	</div>
   	
-		<div id="parameters">            
-			<div id="parameters_container"><table><tbody><tr>
-  <td class="name">id</td>
-  <td class="value"><input type="text" value="" name="id"></td>
-  <td class="description"></td>
-</tr></tbody><tfoot><tr><td></td><td colspan="2"><a href="#" class="submit" id="update_url"><span>Update URL</span></a></td></tr></tfoot></table></div>
-		</div>
+
 	</form>
 	
 </div>
 
+
+  <div id="api_response_container">
+  <div id="response_loading" style="display:none;">Loading...</div>
+  <div id="inner">
   
-  <div id="api_response">
-  {% for api in apis %}
-	{% for method in api.methods %}
-	<div class="response_container" style="display:none;" class="show" id="{{ method.name }}">
-	
-	
-	<!-- Populated with a facsimile of the request headers. -->
-<pre id="request_pre" class="request" style="overflow-x: visible; overflow-y: visible; ">
-<code id="request">GET <span id="api_path">{{ method.path }}{{ method.query }}</span> HTTP/1.1
-Host: stickybits.com
-Accept: application/json
-Auth-Key: 558232
-</code></pre>
-
-<!-- Populated with the response headers/body. -->
-<pre id="response_pre" style="overflow-x: hidden; overflow-y: hidden; ">
-<code id="response_headers">
-HTTP/1.1 200 OK
-Date: Fri, 26 Mar 2010 01:33:39 GMT
-Vary: Accept-Encoding, Accept-Encoding
-Content-Type: application/json; charset=utf-8
-</code>
-<code class="json" id="response_body">{
-  <span class="property">"{{ method.collection|default:"results" }}"</span>: [
-    {
-      <span class="property">"property"</span>: <span class="string">"value"</span>,
-      <span class="property">"resource_url"</span>: <span class="string">"<a href="/resource/path">/resource/path</a>"</span>,
-      <span class="property">"looking like a fool"</span>: <span class="string">"with your pants on the ground"</span>
-    },
-    {
-      <span class="property">"property"</span>: <span class="string">"value"</span>,
-      <span class="property">"resource_url"</span>: <span class="string">"<a href="/resource/path">/resource/path</a>"</span>,
-      <span class="property">"gold teeth in your mouth"</span>: <span class="string">"with your pants on the ground"</span>
-    }
-
-  ]
-}</code></pre>
-	
-	
-	
-	
-	
-	</div>
-  {% endfor %}
-  {% endfor %}
   </div>
-  
+  </div>
 
 				</div>
