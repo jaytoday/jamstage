@@ -52,8 +52,9 @@ setTimeout(function(){ $nav_apis.filter(':first').click();  }, 50);
 
 
 function refreshResponse(){
-  $response_container.find('.response_data').hide(500);
+  $response_container.find('.response_data').hide(150);
   $response_loading.show();
+  
   $request_path = $input_container.find('.path').text() + $address_input.val() + '&ov=558232';
 
 
@@ -64,9 +65,10 @@ $.ajax({
     'request_path': $request_path
   },
   success: function(data) {
+     $response_loading.hide();
     $response_container.find('#inner').html(data)
       .find('.response_data').addClass('show').show(500);
-    $response_loading.hide();
+   
   }
 });
 
